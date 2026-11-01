@@ -286,11 +286,13 @@ blockquote { margin: 20px 0; padding: 4px 16px; border-left: 3px solid var(--acc
    ============================================================ */
 .project-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 240px;
-  gap: 36px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 40px;
+  align-items: center;
 }
 .project-hero .facts { grid-template-columns: 80px 1fr; }
+
+.demo { margin: 0; }
 
 .demo-video {
   display: block;
@@ -301,16 +303,15 @@ blockquote { margin: 20px 0; padding: 4px 16px; border-left: 3px solid var(--acc
   clip-path: inset(5% 2.4% 5.6% 2.4% round 12% / 5.6%);
 }
 
-@media (max-width: 640px) {
-  .project-hero { grid-template-columns: 1fr; gap: 8px; }
-  .demo-video { max-width: 280px; margin: 20px auto 0; }
-}
-
-.demo { margin: 0; }
 .demo figcaption {
-  margin-top: 10px;
+  margin-top: 8px;
   text-align: center;
   font-family: var(--mono);
   font-size: 13px;
   color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .project-hero { grid-template-columns: 1fr; gap: 8px; }
+  .demo { max-width: 300px; margin: 20px auto 0; }
 }
