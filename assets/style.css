@@ -281,11 +281,28 @@ blockquote { margin: 20px 0; padding: 4px 16px; border-left: 3px solid var(--acc
   }
 }
 
-/* Portrait demo video, centered */
+/* ============================================================
+   Project header: summary on the left, demo video on the right
+   ============================================================ */
+.project-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 36px;
+  align-items: start;
+}
+.project-hero .facts { grid-template-columns: 80px 1fr; }
+
 .demo-video {
   display: block;
   width: 100%;
-  max-width: 340px;
-  margin: 28px auto 0;
-  border-radius: 16px;
+  aspect-ratio: 9 / 19.5;
+  object-fit: contain;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
+
+@media (max-width: 640px) {
+  .project-hero { grid-template-columns: 1fr; gap: 8px; }
+  .demo-video { max-width: 280px; margin: 20px auto 0; }
 }

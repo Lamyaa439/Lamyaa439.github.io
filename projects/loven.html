@@ -32,18 +32,20 @@
 
   <main class="wrap">
     <p class="request"><span class="method">GET</span> /projects/loven<span class="status">200 OK</span></p>
-    <h1>LOVEN</h1>
-    <p class="tagline">// an art marketplace app that brings local artists into one place</p>
-
-    <dl class="facts">
-      <dt>my role</dt>   <dd>Backend lead, and the Flutter HTTP client</dd>
-      <dt>team</dt>      <dd>5 engineers</dd>
-      <dt>period</dt>    <dd>Mar 2026 – Jul 2026</dd>
-      <dt>stack</dt>     <dd>Python, Flask, PostgreSQL, SQLAlchemy, Alembic, Firebase, Moyasar, Docker, Flutter</dd>
-      <dt>status</dt>    <dd>In development. The API runs on a Render staging environment, with payments in Moyasar test mode.</dd>
-    </dl>
-
-      <video class="demo-video" controls preload="metadata" playsinline src="../assets/loven-demo.mp4"></video>
+        <div class="project-hero">
+      <div>
+        <h1>LOVEN</h1>
+        <p class="tagline">// an art marketplace app that brings local artists into one place</p>
+        <dl class="facts">
+          <dt>my role</dt>   <dd>Backend lead, and the Flutter HTTP client</dd>
+          <dt>team</dt>      <dd>5 engineers</dd>
+          <dt>period</dt>    <dd>Mar 2026 – Jul 2026</dd>
+          <dt>stack</dt>     <dd>Python, Flask, PostgreSQL, SQLAlchemy, Alembic, Firebase, Moyasar, Docker, Flutter</dd>
+          <dt>status</dt>    <dd>In development. The API runs on a Render staging environment, with payments in Moyasar test mode.</dd>
+        </dl>
+      </div>
+      <video class="demo-video" controls preload="metadata" playsinline src="../assets/loven-demo.mp4" aria-label="Demo: signing in, browsing artworks and artist profiles, and paying"></video>
+    </div>
 
     <h2>The problem</h2>
     <p>Local artists in Saudi Arabia are scattered across Instagram, TikTok, Haraj and other platforms. That makes them hard to discover, and makes buying their work harder still. LOVEN brings them into one platform, where artists can show their work, either for sale or just to share it, and art lovers can discover and buy it in one place.</p>
@@ -199,15 +201,6 @@ sequenceDiagram
       <li>Design every important request to be safe to repeat.</li>
       <li>A clear contract between the backend and the app saves more time than any clever code.</li>
     </ul>
-
-    <h2>Screenshots</h2>
-    <!-- Replace each box with: <img src="../assets/loven-1.png" alt="Describe the screen"> -->
-    <div class="gallery">
-      <div class="shot">screenshot</div>
-      <div class="shot">screenshot</div>
-      <div class="shot">screenshot</div>
-      <div class="shot">screenshot</div>
-    </div>
 
     <p style="margin-top:40px"><a href="../projects.html">← all projects</a></p>
   </main>
