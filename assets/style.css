@@ -305,3 +305,12 @@ blockquote { margin: 20px 0; padding: 4px 16px; border-left: 3px solid var(--acc
   .project-hero { grid-template-columns: 1fr; gap: 8px; }
   .demo-video { max-width: 280px; margin: 20px auto 0; }
 }
+
+.demo { margin: 0; }
+.demo figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+}
