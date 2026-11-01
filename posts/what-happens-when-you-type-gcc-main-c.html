@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What happens when you type gcc main.c · Lamyaa Alghaihab</title>
+  <meta name="description" content="What a compiler is, what GCC does, and the four stages that turn a C file into a program you can run.">
+  <script>
+    (function () {
+      var t;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") {
+        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="wrap site-header">
+    <a class="logo" href="../index.html">lamyaa<span>.</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html">projects</a>
+      <a href="../posts.html" aria-current="page">posts</a>
+      <button class="theme-toggle" type="button" aria-label="Switch theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <p class="request"><span class="method">GET</span> /posts/gcc-main-c<span class="status">200 OK</span></p>
+    <h1>What happens when you type gcc main.c</h1>
+    <p class="muted"><em>Originally published on <a href="https://www.linkedin.com/pulse/what-happens-when-you-type-gcc-mainc-lamyaa-alghaihab-x9tuc/">LinkedIn</a>.</em></p>
+
+    <p>Before we talk about what happens when we type this command to compile a C program:</p>
+<pre><code>gcc main.c</code></pre>
+    <p>let's first talk about what compiling a program means.</p>
+
+    <h2>Compiling programs</h2>
+    <p>A computer doesn't understand any language except machine language (0s and 1s). So when we write a program in a higher-level language like C or C++, we need a special program that translates our statements into a form the computer can understand. That program is called a <strong>compiler</strong>.</p>
+    <p>A compiler is a software program that analyzes a program written in a particular language and translates it into a form that can run on your particular computer system.</p>
+
+    <h2>The GCC compiler</h2>
+    <p>GCC, the GNU Compiler Collection, is a program commonly used to compile C. It started as a compiler for C only, but it now supports many other languages, including C++, Objective-C, Ada, Go, Fortran and D.</p>
+    <p>It's also known as <code>gcc</code> in lowercase, which is the command you type. It translates a C file into an executable in machine language that the computer can run.</p>
+    <p>In this article we'll focus on compiling a C file with <code>gcc</code>.</p>
+
+    <h2>Compiling a C program: behind the scenes</h2>
+    <p>A C program goes through these steps during compilation:</p>
+    <img src="compilation-steps.jpg" alt="Diagram of compiling a C program: edit, compile and assemble, link with libraries, execute a.out, and check the results" width="1488" height="837">
+
+    <h3>The four stages inside gcc</h3>
+    <p>When you type <code>gcc main.c</code>, <code>gcc</code> actually runs four stages, one after another. You can stop it after each stage to see what it produced:</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Stage</th><th>What it does</th><th>Stop here with</th><th>Output</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1. Preprocessor</td><td>Replaces each <code>#include</code> with that file's contents, expands <code>#define</code> macros and removes comments</td><td><code>gcc -E main.c</code></td><td>Expanded C code, printed to the screen</td></tr>
+          <tr><td>2. Compiler</td><td>Translates the C code into assembly</td><td><code>gcc -S main.c</code></td><td><code>main.s</code></td></tr>
+          <tr><td>3. Assembler</td><td>Translates the assembly into machine code</td><td><code>gcc -c main.c</code></td><td><code>main.o</code> (an object file)</td></tr>
+          <tr><td>4. Linker</td><td>Joins your object file with the libraries it uses, like the code behind <code>printf</code></td><td><code>gcc main.c</code></td><td><code>a.out</code> (the executable)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Knowing the stages helps you read error messages. <code>implicit declaration of function</code> comes from the compiler: it hasn't seen a declaration of that function. <code>undefined reference to</code> comes from the linker: it knows the name, but can't find the code.</p>
+
+    <h2>Trying it out</h2>
+    <p>To see what happens when we type <code>gcc main.c</code>, let's open the terminal and create a file named <code>hello.c</code> with a simple program that prints <code>Hello World!</code>:</p>
+<pre><code>vi hello.c</code></pre>
+<pre><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+	/* this prints "Hello World" */
+	printf("Hello World!");
+	return (0);
+}</code></pre>
+    <p>Before compiling, there's only one file in the folder:</p>
+<pre><code>$ ls
+hello.c</code></pre>
+    <p>Now let's compile it:</p>
+<pre><code>$ gcc hello.c</code></pre>
+    <p>The result is stored in a new file, ready to run. On Unix-like systems, this file is called <code>a.out</code> by default. On Windows, the executable usually has the same name as the source file, with <code>.c</code> replaced by <code>.exe</code>.</p>
+<pre><code>$ ls
+a.out  hello.c</code></pre>
+    <p>You can choose the name yourself with <code>-o</code>, for example <code>gcc hello.c -o hello</code>.</p>
+    <p>Now let's run <code>a.out</code>:</p>
+<pre><code>$ ./a.out
+Hello World!%</code></pre>
+    <p>Finally, <code>Hello World!</code> is printed.</p>
+
+    <blockquote>The <code>%</code> right after the text isn't part of the output. The program doesn't print a newline (<code>\n</code>) at the end, so zsh adds a <code>%</code> to show that the last line ended without one. Changing the line to <code>printf("Hello World!\n");</code> makes it disappear.</blockquote>
+
+    <blockquote><strong>Note for Mac users:</strong> on macOS, the <code>gcc</code> command is usually Apple's Clang compiler under the same name. Run <code>gcc --version</code> to check. The four stages and the flags above work the same way.</blockquote>
+
+    <h2>Sources</h2>
+    <ul>
+      <li>Stephen G. Kochan, <em>Programming in C</em>, 3rd edition</li>
+      <li><a href="https://www.geeksforgeeks.org/c/compiling-a-c-program-behind-the-scenes/">GeeksforGeeks: Compiling a C program, behind the scenes</a></li>
+    </ul>
+  
+    <p style="margin-top:40px"><a href="../posts.html">← all posts</a></p>
+  </main>
+
+  <footer class="wrap site-footer">© 2026 Lamyaa Alghaihab</footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
