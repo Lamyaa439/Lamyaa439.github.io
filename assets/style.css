@@ -280,3 +280,12 @@ blockquote { margin: 20px 0; padding: 4px 16px; border-left: 3px solid var(--acc
     transform: translateX(-50%);
   }
 }
+
+/* Portrait demo video, centered */
+.demo-video {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 28px auto 0;
+  border-radius: 16px;
+}
