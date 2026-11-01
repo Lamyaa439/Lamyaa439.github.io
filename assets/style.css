@@ -297,9 +297,8 @@ blockquote { margin: 20px 0; padding: 4px 16px; border-left: 3px solid var(--acc
   width: 100%;
   aspect-ratio: 9 / 19.5;
   object-fit: contain;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 18px;
+  /* Hide the white margin baked into the video around the phone frame */
+  clip-path: inset(5% 2.4% 5.6% 2.4% round 12% / 5.6%);
 }
 
 @media (max-width: 640px) {
