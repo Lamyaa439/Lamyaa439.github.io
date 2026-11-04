@@ -68,7 +68,7 @@
 flowchart TB
     App["Flutter app"] -->|"HTTPS + JWT"| R
     subgraph API["Flask REST API (/api/v1)"]
-        R["Routes"] --> S["Services"] --> Rep["Repositories"] --> M["Models"]
+        R["Routes"] --> F["Facades"] --> S["Services"] --> Rep["Repositories"] --> M["Models"]
     end
     M --> PG[("PostgreSQL")]
     S --> EXT
@@ -78,8 +78,7 @@ flowchart TB
     end
 </pre>
     </div>
-    <p>The API is split into layers, and each layer has one job. Routes check the request, services hold the business rules, and repositories talk to the database. External services, like Moyasar and Firebase, live behind their own clients, so they can be replaced or mocked in tests without touching the rest of the code.</p>
-
+    <p>The API is split into layers, and each layer has one job. Routes handle HTTP: they check the request and shape the response. Facades hold the business logic for each feature and coordinate the services and repositories it needs. Repositories talk to the database. External services, like Moyasar and Firebase, live behind their own clients, so they can be replaced or mocked in tests without touching the rest of the code.</p>
     <h2>Journey 1: Signing in</h2>
     <div class="diagram">
 <pre class="mermaid">
